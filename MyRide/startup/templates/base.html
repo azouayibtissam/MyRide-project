@@ -11,22 +11,28 @@
     <title>Page d'accueil</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light  bg-success shadow">
-    <div class="container">
-        <a class="navbar-brand" href="#">MyRide</a>
+    <nav class="navbar navbar-expand-lg navbar-light  bg-secondary shadow">
+    <div class="container text-center">
+        <a class="navbar-brand text-white" href="#">MyRide</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#">About us <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-white" href="#">About us <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link text-white" href="#">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" >Contact us</a>
+              <a class="nav-link text-white" href="#" >Contact us</a>
+            </li>
+            <li class="nav-item active ml-5">
+              <a class="nav-link btn btn-success text-white" href="{% url 'login' %}">Log in</a>
+            </li>
+            <li class="nav-item active ml-4">
+              <a class="nav-link btn btn-info text-white" href="{% url 'signup' %}">Sign Up</a>
             </li>
           </ul>
         </div>
@@ -37,7 +43,7 @@
     <h1>Welcome to MyRide</h1>
     {% endblock %}
     <footer>
-        <p class ="text-center bg-success shadow"> Created By MyRide team | All Rights Reserved</p>
+        <p class ="text-center bg-secondary shadow"> @2023 Created By MyRide team | All Rights Reserved</p>
 
     </footer>
 

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-lg-6 shadow p-4">
+            <h2>Récupération du mot de passe</h2>
+            <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Adresse Email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" aria-describedby="emailHelp">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="InputCode">code de vérification</label>
+                  <input type="text" class="form-control" id="InputCode">
+                  <small id="codeHelp" class="form-text text-muted">Un code vous sera envoyé si vous avez entré le bon identifiant!</small>
+                  
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

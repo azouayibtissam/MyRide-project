@@ -4,6 +4,8 @@
     <div class="row mt-5 mb-5">
         <div class="col-lg-6 shadow p-4">
             <h2>Log In</h2>
+            <form action="login" method="post">
+              {% csrf_token %}  
             <form>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Adresse Email</label>
@@ -23,10 +25,12 @@
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
                   <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'voyage' %}" type="submit" class="btn btn-primary">Submit</a> 
+                    
+                </a>
               </form>
         </div>
+        
     </div>
     
 </div>

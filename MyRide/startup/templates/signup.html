@@ -2,41 +2,50 @@
 {% block content %}
 
 <div class="container">
+  <!-- {% if error != None %}
+      <div>
+        <p> {{ error }}</p>
+      </div>
+  {% endif %} -->
     <div class="col-lg-6 shadow p-4">
         <h2>Sign Up</h2>
-        <form>
-            <div class="form-row">
+        
+        <form action="signup" method="post">
+          {% csrf_token %}  
+          <div class="form-row">
                 <div class="col">
                     <label for="exampleInputName">Nom</label>
-                    <input type="text" class="form-control" placeholder="First name">
+                    <input type="text" name="nom" class="form-control" placeholder="Last name" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="exampleInputPrenom">Prénom</label>
-                  <input type="text" class="form-control" placeholder="Last name">
+                  <input type="text" name="prenom" class="form-control" placeholder="First name" required>
                 </div>
             </div>
             <div class="form-row">
               <div class="form-group col">
                 <label for="inputEmail4">Adresse Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="name@example.com">
+                <input  type="email" name="email" class="form-control" id="inputEmail4" placeholder="name@example.com" required>
+                
               </div>
               
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Mot de passe</label>
-                <input type="password" class="form-control" id="inputPassword4">
+                <input type="password" name="password" class="form-control" id="inputPassword4" required>
+          
               </div>
             </div>
             <div class="form-group">
                 <label for="inputNumTelephone">Téléphone</label>
-                <input type="text" class="form-control" id="inputNumTelephone" placeholder="+212 6XX-XXXXXX">
+                <input type="number" name="telephone" class="form-control" id="inputNumTelephone" placeholder="+212 6XX-XXXXXX" required>
               </div>
             <div class="form-group">
               <label for="inputAddress">Adresse</label>
-              <input type="text" class="form-control" id="inputAddress">
+              <input type="text" name="adresse"class="form-control" id="inputAddress" required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">CIN</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name="cin" class="form-control-file" id="exampleFormControlFile1" >
             </div>
             
             <div class="form-group">
@@ -47,7 +56,7 @@
                 </label>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">Sign up</button>
           </form>
     
     </div>

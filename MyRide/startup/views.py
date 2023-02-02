@@ -1,12 +1,33 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from datetime import datetime
 from .models import Client
+from . import forms
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 def home(request):
    return render(request, 'home.html')
 
 def login(request):
-   return render(request, 'login.html')
+	if(request.method == "POST"):
+		mail = request.POST["email"]
+		password = request.POST["password"]
+		checking_user=Client(mail=mail)
+		checking_password=Client(password=password)
+		if (mail==checking_user) and (password==checking_password):
+			return render(request, 'voyage.html')
+		
+		try:
+			checking_user= Client.objects.get(mail=mail, password=password)
+			
+		except:
+			print("mail or password incorrect")
+	
+	return render(request, 'login.html')
+		
 
+	
 def signup(request):
 	if(request.method == "POST"):
 		nom = request.POST["nom"]
@@ -30,7 +51,6 @@ def signup(request):
 			return render(request, 'signup.html', error)
 		else:
 			c.save()
-			
 
 		#print("test", existing_client)
 
@@ -38,3 +58,20 @@ def signup(request):
 
 def mdp(request):
    return render(request, 'mdp.html')
+
+def voyage(request):
+   return render(request, 'voyage.html')
+
+
+#contactus
+def contactus_view(request):
+    sub = forms.ContactusForm()
+    if request.method == 'POST':
+        sub = forms.ContactusForm(request.POST)
+        if sub.is_valid():
+            email = sub.cleaned_data['Email']
+            name=sub.cleaned_data['Name']
+            message = sub.cleaned_data['Message']
+            send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
+            return render(request, 'contactsuccess.html')
+    return render(request, 'contactus.html', {'form':sub})

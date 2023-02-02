@@ -51,7 +51,6 @@ def signup(request):
 			return render(request, 'signup.html', error)
 		else:
 			c.save()
-			
 
 		#print("test", existing_client)
 

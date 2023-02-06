@@ -2,15 +2,10 @@
 {% block content %}
 {% load static %}
 <div class="container">
-  <!-- {% if error != None %}
-      <div>
-        <p> {{ error }}</p>
-      </div>
-  {% endif %} -->
+  
   <div class="row mt-4 mb-4">
     <div class="col-lg-6 shadow p-4">
         <h2>Sign Up</h2>
-        
         <form action="signup" method="post">
           {% csrf_token %}  
           <div class="form-row">
@@ -27,12 +22,17 @@
               <div class="form-group col">
                 <label for="inputEmail4">Adresse Email</label>
                 <input  type="email" name="email" class="form-control" id="inputEmail4" placeholder="name@example.com" required>
-                
+                {% if error_mail %}
+                <small  class="form-text text-danger">{{error_mail}}</small>
+                {% endif %}
               </div>
               
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Mot de passe</label>
                 <input type="password" name="password" class="form-control" id="inputPassword4" required>
+                {% if error_pass %}
+                <small  class="form-text text-danger">{{error_pass}}</small>
+                {% endif %}
           
               </div>
             </div>
@@ -62,7 +62,7 @@
     
     </div>
     <div class="col-lg-6">
-      <img src="{% static 'images/trottinette.jpeg' %}" alt="" height="600" width="600">
+      <img src="{% static 'images/velhome.jpeg' %}" alt="" height="600" width="600">
     
     </div>
   </div>

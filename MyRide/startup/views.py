@@ -4,26 +4,27 @@ from datetime import datetime
 from .models import Client
 from . import forms
 from django.core.mail import send_mail
-from django.conf import settings
+from django.conf import settings 
 # Create your views here.
 def home(request):
-   return render(request, 'home.html')
+   return render(request, 'home.html', {'test': "ibtissam"})
 
 def login(request):
 	if(request.method == "POST"):
-		mail = request.POST["email"]
+		mail = request.POST["mail"]
 		password = request.POST["password"]
-		checking_user=Client(mail=mail)
-		checking_password=Client(password=password)
-		if (mail==checking_user) and (password==checking_password):
-			return render(request, 'voyage.html')
-		
+		existing_client=None
 		try:
-			checking_user= Client.objects.get(mail=mail, password=password)
-			
+			existing_client=Client.objects.get(mail=mail, password=password)
 		except:
 			print("mail or password incorrect")
-	
+
+		if existing_client:
+			#return render(request, 'voyage.html', {'client':existing_client})
+			return voyage(request, existing_client)
+		else:
+			return render(request, 'login.html', {'error_login': "mail or password incorrect !"})
+	print("stilll in login")
 	return render(request, 'login.html')
 		
 
@@ -44,25 +45,24 @@ def signup(request):
 			print("client not found")
 		if(existing_client):
 			print(existing_client.mail, "@ already taken")
-			error={}
-			error["msg"]="Mail aleady taken"
-			if error:
-				print(error["msg"])
-			return render(request, 'signup.html', error)
-		else:
-			c.save()
-
-		#print("test", existing_client)
-
+			return render(request, 'signup.html', {'error_mail': "Email address already in use !"})
+		if(len(password)<6):
+			return render(request, 'signup.html', {'error_pass': "Password must be longer than 6 characters !"})
+		c.save()
 	return render(request, 'signup.html')
 
 def mdp(request):
    return render(request, 'mdp.html')
 
-def voyage(request):
-   return render(request, 'voyage.html')
+def voyage(request, client=None):
+	if(not client):
+		return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
+	print(request, "test")
+	return render(request, 'voyage.html', {'client': client})
 
-
+def detail(request):
+   return render(request, 'detail.html')
+   
 #contactus
 def contactus_view(request):
     sub = forms.ContactusForm()

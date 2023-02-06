@@ -8,5 +8,6 @@ urlpatterns = [
     path('mdp',mdp, name="mdp"),
     path('voyage', voyage, name="voyage"),
     path('contactus', contactus_view, name="contactus"),
+    path('detail', detail, name="detail"),
     
 ]

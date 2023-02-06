@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<div class="container">
+<div class="container ">
     <div class="row mt-4 mb-4">
-        <div class="col-lg-5 shadow p-4">
+        <div class="col-lg-4 shadow p-4">
             <h2>Log In</h2>
             <form action="login" method="post">
               {% csrf_token %}  
-            <form>
+            
                 <div class="form-group">
                   <label for="exampleInputEmail1">Adresse Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" aria-describedby="emailHelp">
+                  <input type="email" name="mail" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" aria-describedby="emailHelp">
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Mot de passe</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                   <div class="row no-gutters position-relative">
                     <div>
                       <a href="{% url 'mdp' %}" class="stretched-link">Mot de passe oublié?</a>
@@ -26,14 +26,17 @@
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
                   <label class="form-check-label" for="exampleCheck1">Se souvenir de moi</label>
                 </div>
-                <a href="{% url 'voyage' %}" type="submit" class="btn btn-primary">Submit</a> 
+                <button type="submit" class="btn btn-primary">Submit</button> 
                     
-                </a>
+                {% if error_login %}
+                <small  class="form-text text-danger">{{error_login}}</small>
+                {% endif %}
               </form>
+              
             
         </div>
-        <div class="col-lg-6">
-          <img src="{% static 'images/trottinette.jpeg' %}" alt="" height="400" width="400">
+        <div class="col-lg-4">
+          <img src="{% static 'images/secur_trajet.jpg' %}" alt="" height="400" width="400">
     
         </div>
         

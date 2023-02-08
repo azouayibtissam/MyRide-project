@@ -1,47 +1,72 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<div class="container ">
-    <div class="row mt-4 mb-4">
-        <div class="col-lg-4 shadow p-4">
-            <h2>Log In</h2>
-            <form action="login" method="post">
-              {% csrf_token %}  
-            
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Adresse Email</label>
-                  <input type="email" name="mail" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" aria-describedby="emailHelp">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Mot de passe</label>
-                  <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-                  <div class="row no-gutters position-relative">
-                    <div>
-                      <a href="{% url 'mdp' %}" class="stretched-link">Mot de passe oublié?</a>
-                    </div>
-                </div>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Se souvenir de moi</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button> 
-                    
-                {% if error_login %}
-                <small  class="form-text text-danger">{{error_login}}</small>
-                {% endif %}
-              </form>
+<style>
+.bg-img {
+  /* The image used */
+  background-image: url("https://res.cloudinary.com/funbooker/image/upload/c_fill,dpr_2.0,f_auto,q_auto/v1/marketplace-listing/dcjl6blm7hleizotbii5");
+
+  /* Control the height of the image */
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.bassma {
+  /* position: absolute;
+  right: 100;
+  margin: 20px;
+  max-width: 300px;
+  padding: 16px; */
+  background-color: white;
+}
+</style>
+<div class="bg-img">
+  <div class="container ">
+      <div class="row mt-4 mb-4">
+          <div class="col-lg-4 shadow p-4 bassma">
+              <h2>Log In</h2>
+              <form action="login" method="post">
+                {% csrf_token %}  
               
-            
-        </div>
-        <div class="col-lg-4">
-          <img src="{% static 'images/secur_trajet.jpg' %}" alt="" height="400" width="400">
-    
-        </div>
-        
-    </div>
-    
-    
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Adresse Email</label>
+                    <input type="email" name="mail" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Mot de passe</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                    <div class="row no-gutters position-relative">
+                      <div>
+                        <a href="{% url 'mdp' %}" class="stretched-link">Mot de passe oublié?</a>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Se souvenir de moi</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button> 
+                      
+                  {% if error_login %}
+                  <small  class="form-text text-danger">{{error_login}}</small>
+                  {% endif %}
+              </form>
+                
+              
+          </div>
+          <!-- <div class="col-lg-4">
+            <img src="{% static 'images/secur_trajet.jpg' %}" alt="" height="400" width="400">
+      
+          </div> -->
+          
+      </div>
+      
+      
+  </div>
 </div>
 {% endblock %}

@@ -39,17 +39,17 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-5">
             <li class="nav-item active">
-              <a class="nav-link text-white" href="{% url 'home' %}">About us <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-white" href="{% url 'home' %}">A propos<span class="sr-only">(current)</span></a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'contactus' %}" >Contact us</a>
+              <a class="nav-link text-white" href="{% url 'contactus' %}" >Contactez-nous</a>
             </li>
             <li class="nav-item active ml-4">
-              <a class="nav-link btn btn-success text-white " href="{% url 'login' %}">Log in</a>
+              <a class="nav-link btn btn-success text-white " href="{% url 'login' %}">Se connecter</a>
             </li>
             <li class="nav-item active ml-4 ">
-              <a class="nav-link btn btn-info text-white " href="{% url 'signup' %}">Sign Up</a>
+              <a class="nav-link btn btn-info text-white " href="{% url 'signup' %}">S'inscrire</a>
             </li>
           </ul>
         </div>
@@ -57,7 +57,7 @@
       </nav>
 
     {% block content %}
-    <h1>Welcome to MyRide</h1>
+    
     {% endblock %}
     {% include "footer.html" %}
     <!-- <footer>

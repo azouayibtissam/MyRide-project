@@ -1,12 +1,77 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<h1>Bonjour {{client.prenom_cl}}</h1>
-<h1>choose your ride</h1>
-<form action="login" method="post">
-    {% csrf_token %}  
-<div class="card-body">
-    <h5 class="card-title">Trottinette électrique</h5>
-    <a href="#" class="btn btn-success">Let's start</a>
+<!-- {%if not client%}
+{% endif %} -->
+<style>
+  body {
+background-color: #E1F5FF;
+
+}
+.bg-image {
+  /* The image used */
+  background-image: url("https://res.cloudinary.com/funbooker/image/upload/c_fill,dpr_2.0,f_auto,q_auto/v1/marketplace-listing/dcjl6blm7hleizotbii5");
+
+  /* Add the blur effect */
+
+
+  /* Full height */
+  height: 100%;
+    /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 30%;
+  padding: 20px;
+  text-align: center;
+}
+
+</style>
+<div class="bg-image">
+  <div class="container text-center mt-5 mb-5"><br>
+    <div class="bg-text">
+      <h1>Bonjour {{client.prenom_cl}},</h1><br>
+      <h4>Une balade en vélo <br>ou en <br>trottinette ?</h4>
+    </div>
   </div>
+
+  <div class="container text-center mt-6 mb-5"><br>
+    <form action="login" method="post">
+        {% csrf_token %}  
+      <div class="row">
+          <div class="col-lg-8">
+              <div class="card shadow" style="width: 20rem; opacity: 0.8;">
+                  <img src="{% static 'images/trottinette.jpeg' %}" class="card-img-top" alt="...">
+                  <!-- <img src= alt=".." height="400" width="400"> -->
+                  <div class="card-body">
+                    <a href="{% url 'scan' %}" class="btn btn-success">Trottinette</a>
+                  </div>
+              </div>
+          </div>
+        <div class="col-lg-4">
+          <div class="card shadow" style="opacity: 0.8; width: 20rem;">
+              <img src="{% static 'images/veloo.png' %}" class="card-img-top" alt="...">
+              <!-- <img src= alt=".." height="400" width="400"> -->
+              <div class="card-body">
+                <a href="{% url 'scan' %}" class="btn btn-success">Vélo</a>
+              </div>
+          </div>
+        </div>
+      </div> 
+    </form> 
+  </div>
+</div>
 {% endblock %}

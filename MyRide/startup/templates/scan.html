@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<style>
+    .bg-img {
+      /* The image used */
+      background-image: url("https://images.squarespace-cdn.com/content/v1/59f864e2f09ca461593b1356/1551370827516-BEDCQDRM4GBG7NHVGWD9/exemple+de+QR+code+de+trottinette+%C3%A9lectrique+%C3%A0+Lisbonne");
+    
+      /* Control the height of the image */
+      min-height: 380px;
+    
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+    .bassma {
+      /* position: absolute;
+      right: 100;
+      margin: 20px;
+      max-width: 300px;
+      padding: 16px; */
+      background-color: white;
+    }
+    .bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+    </style>
+<div class="bg-img">
+    <div class="bg-text">
+        <div class="container text-center mt-6 mb-5"><br>
+            <h1 style="color:rgb(252, 253, 252);">Scanner le Qr code</h1>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

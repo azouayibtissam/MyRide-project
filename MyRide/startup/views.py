@@ -20,8 +20,8 @@ def login(request):
 			print("mail or password incorrect")
 
 		if existing_client:
-			#return render(request, 'voyage.html', {'client':existing_client})
-			return voyage(request, existing_client)
+			return render(request, 'voyage.html', {'client':existing_client})
+			# return voyage(request, existing_client)
 		else:
 			return render(request, 'login.html', {'error_login': "mail or password incorrect !"})
 	print("stilll in login")
@@ -54,11 +54,12 @@ def signup(request):
 def mdp(request):
    return render(request, 'mdp.html')
 
-def voyage(request, client=None):
-	if(not client):
-		return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
-	print(request, "test")
-	return render(request, 'voyage.html', {'client': client})
+def voyage(request):
+	# , client=None
+	# if(not client):
+	# 	return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
+	# print(request, "test") {'client': client}
+	return render(request, 'voyage.html' )
 
 def detail(request):
    return render(request, 'detail.html')
@@ -75,3 +76,6 @@ def contactus_view(request):
             send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
             return render(request, 'contactsuccess.html')
     return render(request, 'contactus.html', {'form':sub})
+
+def scan(request):
+   return render(request, 'scan.html')

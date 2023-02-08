@@ -9,5 +9,6 @@ urlpatterns = [
     path('voyage', voyage, name="voyage"),
     path('contactus', contactus_view, name="contactus"),
     path('detail', detail, name="detail"),
+    path('scan', scan, name="scan"),
     
 ]

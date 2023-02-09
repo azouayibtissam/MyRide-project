@@ -20,7 +20,7 @@ class Vehicule(models.Model):
     designation = models.CharField(max_length=30)
     model= models.CharField(max_length=30)
     date_achat= models.DateField()
-    prix_achat= models.DecimalField(..., max_digits=5, decimal_places=2)
+    prix_achat= models.DecimalField(max_digits=5, decimal_places=2)
     tarif_heure= models.IntegerField()
 
 class Comment(models.Model):

@@ -13,22 +13,22 @@ class Client(models.Model):
 
 
     
-# class Vehicule(models.Model):
-#     designation = models.CharField(max_length=30)
-#     model= models.CharField(max_length=30)
-#     date_achat= models.DateField()
-#     prix_achat= models.DecimalField(..., max_digits=5, decimal_places=2)
-#     tarif_heure= models.IntegerField()
-#     Disponible=models.BooleanField()
+class Vehicule(models.Model):
+    designation = models.CharField(max_length=30)
+    model= models.CharField(max_length=30)
+    date_achat= models.DateField()
+    prix_achat= models.DecimalField(max_digits=5, decimal_places=2)
+    tarif_heure= models.IntegerField()
+    Disponible=models.BooleanField()
 
-# class Voyage(models.Model):
-#     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-#     vehicule= models.ForeignKey(Vehicule, on_delete=models.CASCADE)
-#     heure_debut = models.DateField()
-#     heure_fin= models.DateField()
+class Voyage(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    vehicule= models.ForeignKey(Vehicule, on_delete=models.CASCADE)
+    heure_debut = models.DateField()
+    heure_fin= models.DateField()
 
 
-# class Comment(models.Model):
-#     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-#     date_comment = models.DateField()
-#     content= models.CharField(max_length=200)
+class Comment(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    date_comment = models.DateField()
+    content= models.CharField(max_length=200)

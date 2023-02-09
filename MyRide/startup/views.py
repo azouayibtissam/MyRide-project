@@ -49,10 +49,14 @@ def signup(request):
 		if(len(password)<6):
 			return render(request, 'signup.html', {'error_pass': "Password must be longer than 6 characters !"})
 		c.save()
+		return render(request, 'up_succes.html')
 	return render(request, 'signup.html')
 
 def mdp(request):
    return render(request, 'mdp.html')
+
+def up_succes(request):
+   return render(request, 'up_succes.html')
 
 def voyage(request):
 	# , client=None

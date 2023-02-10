@@ -20,11 +20,10 @@ def login(request):
 			print("mail or password incorrect")
 
 		if existing_client:
-			return render(request, 'voyage.html', {'client':existing_client})
-			# return voyage(request, existing_client)
+			request.session['current_user'] = {'prenom_cl': existing_client.prenom_cl, 'nom_cl': existing_client.nom_cl}
+			return render(request, 'voyage.html')
 		else:
 			return render(request, 'login.html', {'error_login': "mail or password incorrect !"})
-	print("stilll in login")
 	return render(request, 'login.html')
 		
 
@@ -60,9 +59,9 @@ def up_succes(request):
 
 def voyage(request):
 	# , client=None
-	# if(not client):
-	# 	return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
-	# print(request, "test") {'client': client}
+	if(not request.session["current_user"]):
+		return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
+	print(request.session["current_user"], "session opened!!!!!!!!")
 	return render(request, 'voyage.html' )
 
 def detail(request):

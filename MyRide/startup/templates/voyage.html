@@ -43,7 +43,7 @@ background-color: #E1F5FF;
 <div class="bg-image">
   <div class="container text-center mt-5 mb-5"><br>
     <div class="bg-text">
-      <h1>Bonjour {{client.prenom_cl}},</h1><br>
+      <h1>Bonjour {{request.session.current_user.prenom_cl}},</h1><br>
       <h4>Une balade en vélo <br>ou en <br>trottinette ?</h4>
     </div>
   </div>

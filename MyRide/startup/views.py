@@ -109,7 +109,8 @@ def vehicules(request):
 				'designation': xiaomi3lite.first().designation,
 				'photo': xiaomi3lite.first().photo,
 				'stock': len(xiaomi3lite),
-				'dispo': len(xiaomi3lite.filter(disponible=True))
+				'dispo': len(xiaomi3lite.filter(disponible=True)),
+
 			},
 			{
 				'designation': xiaomi4pro.first().designation,

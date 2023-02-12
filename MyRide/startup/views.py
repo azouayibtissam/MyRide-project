@@ -82,3 +82,8 @@ def contactus_view(request):
 
 def scan(request):
    return render(request, 'scan.html')
+
+def disconnect(request):
+   del request.session["current_user"]
+   return render(request, 'login.html')
+

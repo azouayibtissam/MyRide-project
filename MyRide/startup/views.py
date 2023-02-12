@@ -1,10 +1,12 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
 from .models import Client
 from . import forms
 from django.core.mail import send_mail
 from django.conf import settings 
+from django.contrib import messages
+from django.contrib.auth import logout
 # Create your views here.
 def home(request):
    return render(request, 'home.html', {'test': "ibtissam"})
@@ -48,7 +50,8 @@ def signup(request):
 		if(len(password)<6):
 			return render(request, 'signup.html', {'error_pass': "Password must be longer than 6 characters !"})
 		c.save()
-		return render(request, 'up_succes.html')
+		messages.success(request, 'votre compte a été créé avec succès !')
+		# return redirect('login')
 	return render(request, 'signup.html')
 
 def mdp(request):

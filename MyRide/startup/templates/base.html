@@ -45,12 +45,18 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'contactus' %}" >Contactez-nous</a>
             </li>
-            <li class="nav-item active ml-4">
-              <a class="nav-link btn btn-success text-white " href="{% url 'login' %}">Se connecter</a>
-            </li>
-            <li class="nav-item active ml-4 ">
-              <a class="nav-link btn btn-info text-white " href="{% url 'signup' %}">S'inscrire</a>
-            </li>
+            {% if request.session.current_user %}
+              <li class="nav-item active ml-4">
+                <a class="nav-link btn btn-danger text-white " href="{% url 'disconnect' %}">Se déconnecter</a>
+              </li>
+            {% else %}
+              <li class="nav-item active ml-4">
+                <a class="nav-link btn btn-success text-white " href="{% url 'login' %}">Se connecter</a>
+              </li>
+              <li class="nav-item active ml-4 ">
+                <a class="nav-link btn btn-info text-white " href="{% url 'signup' %}">S'inscrire</a>
+              </li>
+            {% endif %}
           </ul>
         </div>
     </div>

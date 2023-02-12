@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import Client
+from .models import *
 from . import forms
 from django.core.mail import send_mail
 from django.conf import settings 
@@ -89,4 +89,35 @@ def scan(request):
 def disconnect(request):
    del request.session["current_user"]
    return render(request, 'login.html')
+
+def vehicules(request):
+	vehicules=None
+	print("get",request.GET)
+	if(request.GET["model"] == "trottinette"):
+		xiaomi3frmi = Vehicule.objects.filter(designation="Xiaomi 3 FR MI")
+		xiaomi3lite = Vehicule.objects.filter(designation="Xiaomi 3 Lite")
+		xiaomi4pro = Vehicule.objects.filter(designation="Xiaomi 4 Pro")
+
+		vehicules = [
+			{
+				'designation': xiaomi3frmi.first().designation,
+				'photo': xiaomi3frmi.first().photo,
+				'stock': len(xiaomi3frmi),
+				'dispo': len(xiaomi3frmi.filter(disponible=True)),
+			},
+			{
+				'designation': xiaomi3lite.first().designation,
+				'photo': xiaomi3lite.first().photo,
+				'stock': len(xiaomi3lite),
+				'dispo': len(xiaomi3lite.filter(disponible=True))
+			},
+			{
+				'designation': xiaomi4pro.first().designation,
+				'photo': xiaomi4pro.first().photo,
+				'stock': len(xiaomi4pro),
+				'dispo': len(xiaomi4pro.filter(disponible=True))
+			}
+		]
+
+	return render(request, 'vehicules.html', {'vehicules':vehicules})
 

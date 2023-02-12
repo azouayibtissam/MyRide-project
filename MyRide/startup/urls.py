@@ -12,6 +12,8 @@ urlpatterns = [
     path('scan', scan, name="scan"),
     path('up_succes', up_succes, name="up_succes"),
     path('disconnect', disconnect, name="disconnect"),
+    path('vehicules', vehicules, name="vehicules"),
+
 
     
 ]

@@ -21,15 +21,16 @@
         <div class="col-lg-4">
             <div class="card shadow" style="width: 18rem;"><br>
                 <h5 class="card-title">{{elt.designation}}</h5>
-                <img src="{{elt.photo}}" class="card-img-top" alt="My image" height="350" width="378">
+                <img src="{{elt.photo}}" class="card-img-top" alt="My image" height="300" width="350">
 
                 <div class="card-body">
-                  <span>Stock: </span> <span>{{elt.stock}}</span> <br><br>
-                  <span>Disponible: </span> <span>{{elt.dispo}}</span> <br><br>
+                  <span>Stock: </span> <span>{{elt.stock}}</span> <br>
+                  <span>Disponible: </span> <span>{{elt.dispo}}</span> <br>
+                  <span>Tarif/heure: </span> <span>{{elt.tarif_heure}} DH</span> <br><br>
                   {% if elt.dispo >= 1 %}
-                  <button href="{% url 'scan' %}" onclick='showForm("{{elt.designation}}")' class="btn btn-success">Reserver</button>
+                  <button onclick='showForm("{{elt.designation}}")' class="btn btn-success">Reserver</button>
                   {% else %}
-                  <button class="btn btn-danger disabled">Reserver</button>
+                  <button href= "{% url 'facture' %}" class="btn btn-danger disabled">Reserver</button>
                   {% endif %}
                 </div>
             </div>
@@ -39,15 +40,16 @@
 </div>
 <div class="m-5" id="reserve-form">
 <form action="facture" method="post">
+    {% csrf_token %} 
     <div class="form-row">
       <div class="col col-lg-4">
-        <label for="exampleInputEmail1">Heure debut</label>
+        <label for="exampleInputDate">Heure début</label>
         <input type="datetime-local" class="form-control" placeholder="Heure debut">
         <input type="hidden" id="designation" name="designation">
 
       </div>
       <div class="col col-lg-4">
-        <label for="exampleInputEmail1">Heure fin</label>
+        <label for="exampleInputDate">Heure fin</label>
         <input type="datetime-local" class="form-control" placeholder="Heure fin">
       </div>
     </div>

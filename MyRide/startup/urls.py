@@ -10,7 +10,7 @@ urlpatterns = [
     path('contactus', contactus_view, name="contactus"),
     path('detail', detail, name="detail"),
     path('scan', scan, name="scan"),
-    path('up_succes', up_succes, name="up_succes"),
+    path('facture', facture, name="facture"),
     path('disconnect', disconnect, name="disconnect"),
     path('vehicules', vehicules, name="vehicules"),
 

@@ -57,8 +57,8 @@ def signup(request):
 def mdp(request):
    return render(request, 'mdp.html')
 
-def up_succes(request):
-   return render(request, 'up_succes.html')
+def facture(request):
+   return render(request, 'facture.html')
 
 def voyage(request):
 	# , client=None
@@ -104,19 +104,22 @@ def vehicules(request):
 				'photo': xiaomi3frmi.first().photo,
 				'stock': len(xiaomi3frmi),
 				'dispo': len(xiaomi3frmi.filter(disponible=True)),
+				'tarif_heure':xiaomi3frmi.first().tarif_heure,
 			},
 			{
 				'designation': xiaomi3lite.first().designation,
 				'photo': xiaomi3lite.first().photo,
 				'stock': len(xiaomi3lite),
 				'dispo': len(xiaomi3lite.filter(disponible=True)),
+				'tarif_heure':xiaomi3lite.first().tarif_heure,
 
 			},
 			{
 				'designation': xiaomi4pro.first().designation,
 				'photo': xiaomi4pro.first().photo,
 				'stock': len(xiaomi4pro),
-				'dispo': len(xiaomi4pro.filter(disponible=True))
+				'dispo': len(xiaomi4pro.filter(disponible=True)),
+				'tarif_heure':xiaomi4pro.first().tarif_heure,
 			}
 		]
 

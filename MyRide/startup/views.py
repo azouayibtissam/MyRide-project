@@ -6,7 +6,6 @@ from . import forms
 from django.core.mail import send_mail
 from django.conf import settings 
 from django.contrib import messages
-from django.contrib.auth import logout
 # Create your views here.
 def home(request):
    return render(request, 'home.html', {'test': "ibtissam"})
@@ -90,3 +89,8 @@ def disconnect(request):
    del request.session["current_user"]
    return render(request, 'login.html')
 
+def vehicules(request):
+   return render(request, 'vehicules.html')
+
+def facture(request):
+   return render(request, 'facture.html')

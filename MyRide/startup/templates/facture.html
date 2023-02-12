@@ -1,0 +1,65 @@
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<div class="card">
+    <div class="card-body mx-4">
+      <div class="container">
+        <p class="my-5 mx-5" style="font-size: 30px;">Thank for your purchase</p>
+        <div class="row">
+          <ul class="list-unstyled">
+            <li class="text-black">{{request.session.current_user.prenom_cl}} {{request.session.current_user.nom_cl}}</li>
+            <li class="text-muted mt-1"><span class="text-black">Facture</span> #12345</li>
+            <li class="text-black mt-1">April 17 2021</li>
+          </ul>
+          <hr>
+          <div class="col-xl-10">
+            <p>Pro Package</p>
+          </div>
+          <div class="col-xl-2">
+            <p class="float-end">$199.00
+            </p>
+          </div>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-xl-10">
+            <p>Consulting</p>
+          </div>
+          <div class="col-xl-2">
+            <p class="float-end">$100.00
+            </p>
+          </div>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-xl-10">
+            <p>Support</p>
+          </div>
+          <div class="col-xl-2">
+            <p class="float-end">$10.00
+            </p>
+          </div>
+          <hr style="border: 2px solid black;">
+        </div>
+        <div class="row text-black">
+  
+          <div class="col-xl-12">
+            <p class="float-end fw-bold">Total: $10.00
+            </p>
+          </div>
+          <hr style="border: 2px solid black;">
+        </div>
+  
+      </div>
+    </div>
+  </div>

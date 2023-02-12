@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-{% load static %}
+{% load static %} 
 <div class="container">
   
   <div class="row mt-4 mb-4">
     <div class="col-lg-6 shadow p-4">
+        {% for message in messages %}
+        <strong class="text center"><i style="color: green;">{{message}}</i></strong>
+        {% endfor %}
         <h2>Sign Up</h2>
         <form action="signup" method="post">
           {% csrf_token %}  

@@ -13,7 +13,7 @@ class Client(models.Model):
 class Vehicule(models.Model):
     designation = models.CharField(max_length=30)
     model= models.CharField(max_length=30)
-    photo=models.ImageField(upload_to='vehicules', default=None)
+    photo=models.ImageField(upload_to='static/vehicules', default=None)
     date_achat= models.DateField()
     prix_achat= models.DecimalField(max_digits=5,decimal_places=1)
     tarif_heure= models.IntegerField()

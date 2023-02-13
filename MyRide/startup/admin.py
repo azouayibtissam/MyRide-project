@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client, Vehicule, Voyage, Facture
+from .models import *
 
 # Register your models here.
 class ClientAdmin(admin.ModelAdmin):
@@ -17,6 +17,3 @@ class VoyageAdmin(admin.ModelAdmin):
    pass
 admin.site.register(Voyage, VoyageAdmin)
 
-class FactureAdmin(admin.ModelAdmin):
-   pass
-admin.site.register(Facture, FactureAdmin)

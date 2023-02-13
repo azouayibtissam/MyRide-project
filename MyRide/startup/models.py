@@ -22,17 +22,13 @@ class Vehicule(models.Model):
 
 class Voyage(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    #vehicule= models.ForeignKey(Vehicule, on_delete=models.CASCADE)
-    heure_debut = models.DateField()
-    heure_fin= models.DateField()
+    vehicule= models.ForeignKey(Vehicule, on_delete=models.CASCADE, default=None)
+    heure_debut = models.CharField(max_length=30)
+    heure_fin= models.CharField(max_length=30)
+    montant= models.DecimalField(max_digits=5,decimal_places=2, default=0) 
 
-class Facture(models.Model):
-    voyage = models.ForeignKey(Voyage, on_delete=models.CASCADE)
-    date_debut = models.DateTimeField()
-    date_fin = models.DateTimeField()
-    montant= models.IntegerField()
 
 class Comment(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    date_comment = models.DateField()
+    date_comment = models.CharField(max_length=30)
     msg= models.CharField(max_length=200)

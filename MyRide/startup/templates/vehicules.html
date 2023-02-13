@@ -82,7 +82,7 @@
     <div class="form-row">
       <div class="col col-lg-4">
         <label for="exampleInputDate">Heure début</label>
-        <input type="datetime-local" id="date_debut" class="form-control" placeholder="Heure debut" required>
+        <input type="datetime-local" id="date_debut" name="date_debut" class="form-control" placeholder="Heure debut" required>
         <input type="hidden" id="designation" name="designation">
         <input type="hidden" id="tarif_heure" name="tarif_heure">
         <input type="hidden" id="total" name="total">
@@ -92,7 +92,7 @@
       </div>
       <div class="col col-lg-4">
         <label for="exampleInputDate">Heure fin</label>
-        <input type="datetime-local" id="date_fin" class="form-control" placeholder="Heure fin" required onchange="debug(this.value)">
+        <input type="datetime-local" id="date_fin" name="date_fin" class="form-control" placeholder="Heure fin" required onchange="debug(this.value)">
       </div>
     </div>
     <div class="form-row">

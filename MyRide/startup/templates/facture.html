@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-<div class="container m-5">
-    <div class="card">
+
+<script>
+ $( document ).ready(function() {
+        $('#today').html(new Date())
+    });
+
+
+  function Download() {
+    element = document.getElementById("invoice") 
+    var worker = html2pdf().from(element).saveAs("facture.pdf");
+    setTimeout(function () {
+            window.location.href = "/";
+        }, 3000);
+  }
+</script>
+<body id="invoice">
+<div class="container m-5" id="invoice">
+
+<div class="card">
   <div class="card-header">
 Facture
-  <strong>01/01/2018</strong> 
+  <div><strong>Date: <span id="today"></span></strong></div>
     <!-- <span class="float-right"> <strong>Status:</strong> Pending</span> -->
     <img  class="float-right" src="{% static 'images/Myride.png' %}" alt="" height="70" width="70">
   
@@ -13,20 +30,20 @@ Facture
   <div class="card-body">
   <div class="row mb-4">
   <div class="col-sm-6">
-  <h6 class="mb-3">From:</h6>
-  <div>
-  <strong>MyRide</strong>
-  </div>
+  <h6 class="mb-3">From: <strong>MyRide</strong></h6>
+
   <div>bd laymoun,ESITH casablanca</div>
   <div>Email: Myride@contact.com</div>
   <div>Phone: +212 604 616364</div>
   </div>
   
   <div class="col-sm-6">
-  <h6 class="mb-3">To:</h6>
-  <div>
-  <strong>{{request.session.current_user.prenom_cl}} {{request.session.current_user.nom_cl}}</strong>
-  </div>
+  <strong>{{result.prenom_cl}} {{result.nom_cl}}</strong>
+  <h6 class="mb-3">To: </h6>
+
+  <div>{{ result.mail}} </div>
+  <div>{{ result.telephone}} </div>
+  <div>{{ result.adresse}} </div>
   </div>
   
   
@@ -49,12 +66,12 @@ Facture
   <tbody>
   <tr>
   <td class="center">1</td>
-  <td class="left strong">Origin License</td>
-  <td class="left">Extended License</td>
+  <td class="left strong">{{result.model}}</td>
+  <td class="left">{{result.designation}}</td>
   
-  <td class="right">$999,00</td>
-    <td class="center">1</td>
-  <td class="right">$999,00</td>
+  <td class="right">{{result.heure_debut}}</td>
+    <td class="center">{{result.heure_fin}}</td>
+  <td class="right">{{result.montant}}</td>
   </tr>  
   </tbody>
   </table>
@@ -73,7 +90,7 @@ Facture
   <strong>Total</strong>
   </td>
   <td class="right">
-  <strong>$7.477,36</strong>
+  <strong>{{result.montant}} Dhs</strong>
   </td>
   </tr>
   </tbody>
@@ -85,5 +102,7 @@ Facture
   
   </div>
   </div>
+  <button class="btn btn-lg btn-primary my-3" onclick="Download()">Download</button>
   </div>
+</body>
 {% endblock %}

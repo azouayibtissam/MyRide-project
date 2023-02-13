@@ -60,12 +60,45 @@ def mdp(request):
    return render(request, 'mdp.html')
 
 def facture(request):
-   if( not "current_user" in request.session):
-      return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
-   return render(request, 'facture.html')
+	if( not "current_user" in request.session):
+		return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
+   #Reduire stock
+	if (request.method == "POST"):
+		print("post res", request.POST)
+		#Reduire disponibilité
+		vehicule_reserve = Vehicule.objects.filter(designation=request.POST["designation"], disponible=True).first()  
+		print("Vehicule  selectionne       =>", vehicule_reserve)
+		vehicule_reserve.disponible = False  
+		vehicule_reserve.save()
+		#Creation objet voyage
+		voyage = Voyage(
+			heure_debut= request.POST["date_debut"],
+			heure_fin = request.POST["date_fin"],
+			montant= float(request.POST["total"]),
+			client = Client.objects.get(
+				prenom_cl= request.session["current_user"]["prenom_cl"],
+				nom_cl= request.session["current_user"]["nom_cl"],
+			),
+			vehicule = vehicule_reserve
+			)
+		voyage.save()
+		result = {
+			"prenom_cl": voyage.client.prenom_cl,
+			"nom_cl": voyage.client.nom_cl,
+			"heure_debut": voyage.heure_debut,
+			"heure_fin": voyage.heure_fin,
+			"montant": voyage.montant,
+			"designation": voyage.vehicule.designation,
+			"model": voyage.vehicule.model,
+			"mail": voyage.client.mail,
+			"telephone": voyage.client.telephone,
+			"adresse": voyage.client.adresse,
+		}
+		print("=======> ", result)
+		return render(request, 'facture.html', {'result': result})
+	return render(request, 'facture.html')
 
 def voyage(request):
-	# , client=None
 	if( not "current_user" in request.session):
 		return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
 	print(request.session["current_user"], "session opened!!!!!!!!")
@@ -76,16 +109,16 @@ def detail(request):
    
 #contactus
 def contactus_view(request):
-    sub = forms.ContactusForm()
-    if request.method == 'POST':
-        sub = forms.ContactusForm(request.POST)
-        if sub.is_valid():
-            email = sub.cleaned_data['Email']
-            name=sub.cleaned_data['Name']
-            message = sub.cleaned_data['Message']
-            send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
-            return render(request, 'contactsuccess.html')
-    return render(request, 'contactus.html', {'form':sub})
+	sub = forms.ContactusForm()
+	if request.method == 'POST':
+		sub = forms.ContactusForm(request.POST)
+		if sub.is_valid():
+			email = sub.cleaned_data['Email']
+			name=sub.cleaned_data['Name']
+			message = sub.cleaned_data['Message']
+			send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
+			return render(request, 'contactsuccess.html')
+	return render(request, 'contactus.html', {'form':sub})
 
 def scan(request):
    return render(request, 'scan.html')

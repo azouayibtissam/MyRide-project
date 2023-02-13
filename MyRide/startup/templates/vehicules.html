@@ -5,13 +5,51 @@
     
     $( document ).ready(function() {
         $('#reserve-form').hide()
+        $('#reserve-btn').prop("disabled", true)
         console.log("Hiding form")
     });
 
-    function showForm(des) {
+    function showForm(des, tarif) {
         console.log("showing form", des)
         $('#reserve-form').show()
         $('#designation').val(des)
+        $('#tarif_heure').val(tarif)
+        $("#date_debut").val(null)
+        $("#date_fin").val(null)
+        $('#reserve-badge').html("Total " + 0 + " Dhs")
+        $('#total').val(0)
+        $('#reserve-btn').prop("disabled", true)
+    }
+
+
+    debug = (val) => {
+        console.log("date debut", $("#date_debut").val())
+        console.log("date fin", $("#date_fin").val())
+        if(! $("#date_debut").val()){
+            alert("Veuillez remplir la date de début de votre reservation!!")
+            return
+        }
+        
+        const date_deb = new Date($("#date_debut").val())
+        const date_fin = new Date($("#date_fin").val())
+
+        if(date_fin.getTime() <= date_deb.getTime()){
+            alert("Les date saisies sont incohérantes. Merci de vérifier à nouveau!!")
+            return
+        }
+            
+        diff_min = (date_fin.getTime() - date_deb.getTime())/1000/60
+        console.log("diff in minutes " + diff_min)
+
+        if(diff_min < 15){
+            alert("Vous devrez reserver au minimum 15 minutes!!")
+            return
+        }
+        tarif = parseFloat(($("#tarif_heure").val() / 60) * diff_min).toFixed(2)
+        console.log("tarif "+ tarif )
+        $('#reserve-badge').html("Total " + tarif + " Dhs")
+        $('#total').val(tarif)
+        $('#reserve-btn').prop("disabled", false)
 
     }
 </script>   
@@ -28,7 +66,7 @@
                   <span>Disponible: </span> <span>{{elt.dispo}}</span> <br>
                   <span>Tarif/heure: </span> <span>{{elt.tarif_heure}} DH</span> <br><br>
                   {% if elt.dispo >= 1 %}
-                  <button onclick='showForm("{{elt.designation}}")' class="btn btn-success">Reserver</button>
+                  <button onclick='showForm("{{elt.designation}}", "{{elt.tarif_heure}}")' class="btn btn-success">Reserver</button>
                   {% else %}
                   <button href= "{% url 'facture' %}" class="btn btn-danger disabled">Reserver</button>
                   {% endif %}
@@ -44,18 +82,27 @@
     <div class="form-row">
       <div class="col col-lg-4">
         <label for="exampleInputDate">Heure début</label>
-        <input type="datetime-local" class="form-control" placeholder="Heure debut">
+        <input type="datetime-local" id="date_debut" class="form-control" placeholder="Heure debut" required>
         <input type="hidden" id="designation" name="designation">
+        <input type="hidden" id="tarif_heure" name="tarif_heure">
+        <input type="hidden" id="total" name="total">
+
+
 
       </div>
       <div class="col col-lg-4">
         <label for="exampleInputDate">Heure fin</label>
-        <input type="datetime-local" class="form-control" placeholder="Heure fin">
+        <input type="datetime-local" id="date_fin" class="form-control" placeholder="Heure fin" required onchange="debug(this.value)">
       </div>
     </div>
     <div class="form-row">
+        <div class="col col-lg-4 my-3">
+            <span class="p-2 badge badge-lg badge-warning em-6" id="reserve-badge">Total: 0 Dhs</span>
+        </div>
+    </div>
+    <div class="form-row">
         <div class="col col-lg-4">
-            <button class="mt-2 btn btn-primary btn-lg">Valider</button>
+            <button class="mt-2 btn btn-primary btn-lg" id="reserve-btn">Valider</button>
         </div>
     </div>
 </form>

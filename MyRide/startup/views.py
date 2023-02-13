@@ -23,7 +23,9 @@ def login(request):
 
 		if existing_client:
 			request.session['current_user'] = {'prenom_cl': existing_client.prenom_cl, 'nom_cl': existing_client.nom_cl}
-			return render(request, 'voyage.html')
+			#Session expires in 1h
+			request.session.set_expiry(3600)
+			return redirect(voyage)
 		else:
 			return render(request, 'login.html', {'error_login': "mail or password incorrect !"})
 	return render(request, 'login.html')
@@ -58,11 +60,13 @@ def mdp(request):
    return render(request, 'mdp.html')
 
 def facture(request):
+   if( not "current_user" in request.session):
+      return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
    return render(request, 'facture.html')
 
 def voyage(request):
 	# , client=None
-	if(not request.session["current_user"]):
+	if( not "current_user" in request.session):
 		return render(request, 'login.html', {'error_login': "You must be logged in to access voyage page!"})
 	print(request.session["current_user"], "session opened!!!!!!!!")
 	return render(request, 'voyage.html' )

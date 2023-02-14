@@ -83,6 +83,7 @@ def facture(request):
 			)
 		voyage.save()
 		result = {
+			"id": voyage.vehicule.id,
 			"prenom_cl": voyage.client.prenom_cl,
 			"nom_cl": voyage.client.nom_cl,
 			"heure_debut": voyage.heure_debut,
@@ -157,6 +158,26 @@ def vehicules(request):
 				'stock': len(xiaomi4pro),
 				'dispo': len(xiaomi4pro.filter(disponible=True)),
 				'tarif_heure':xiaomi4pro.first().tarif_heure,
+			}
+		]
+	else:
+		haibikehardseven = Vehicule.objects.filter(designation="Haibike hardseven")
+		haibikehardnine = Vehicule.objects.filter(designation="Haibike hardnine")
+
+		vehicules = [
+			{
+				'designation': haibikehardseven.first().designation,
+				'photo': haibikehardseven.first().photo,
+				'stock': len(haibikehardseven),
+				'dispo': len(haibikehardseven.filter(disponible=True)),
+				'tarif_heure':haibikehardseven.first().tarif_heure,
+			},
+			{
+				'designation': haibikehardnine.first().designation,
+				'photo': haibikehardnine.first().photo,
+				'stock': len(haibikehardnine),
+				'dispo': len(haibikehardnine.filter(disponible=True)),
+				'tarif_heure':haibikehardnine.first().tarif_heure,
 			}
 		]
 

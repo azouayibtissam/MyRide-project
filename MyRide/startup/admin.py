@@ -17,3 +17,7 @@ class VoyageAdmin(admin.ModelAdmin):
    pass
 admin.site.register(Voyage, VoyageAdmin)
 
+class CommentAdmin(admin.ModelAdmin):
+   pass
+admin.site.register(Comment, CommentAdmin)
+
